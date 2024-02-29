@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import CreateAccount from "./pages/CreateAccount";
 import Profile from "./pages/Profile";
 import SoilLibrary from "./pages/SoilLibrary";
+import SoilSelector from "./pages/SoilSelector";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,6 +22,7 @@ function App() {
         <Route path="/create-account" element={<CreateAccount authenticate={authenticateUser} />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/soil-library" element={<SoilLibrary selectedSoils={selectedSoils} />} />
+        <Route path="/soil-selector" element={<SoilSelector setSelectedSoils={setSelectedSoils} />} />
       </Routes>
     </Router>
   );
