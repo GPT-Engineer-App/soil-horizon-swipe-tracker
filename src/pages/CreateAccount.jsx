@@ -1,17 +1,31 @@
-import { FormControl, FormLabel, Input, Button, VStack, Heading } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, Button, VStack, Heading, useToast } from "@chakra-ui/react";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateAccount() {
+  const existingEmails = ["user@example.com", "admin@example.com"]; // Simulated existing emails
   const navigate = useNavigate();
+  const toast = useToast();
+  const [email, setEmail] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const emailRef = useRef();
 
-  const authenticate = () => {
-    // Simulate authentication logic
-    setIsAuthenticated(true);
-    // Redirect to home or dashboard after successful authentication
-    navigate("/dashboard"); // Assuming '/dashboard' is the path for the authenticated user's dashboard
+  const authenticate = (userEmail) => {
+    if (existingEmails.includes(userEmail)) {
+      toast({
+        title: "Account creation failed.",
+        description: "The email address is already in use.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
+      // Simulate authentication logic
+      setIsAuthenticated(true);
+      // Redirect to home after successful authentication
+      navigate("/"); // Redirect to the homepage
+    }
   };
   return (
     <VStack spacing={4} p={4}>
@@ -22,7 +36,7 @@ export default function CreateAccount() {
       </FormControl>
       <FormControl id="email" isRequired>
         <FormLabel>Email</FormLabel>
-        <Input placeholder="Enter your email" type="email" />
+        <Input placeholder="Enter your email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} ref={emailRef} />
       </FormControl>
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
@@ -32,7 +46,7 @@ export default function CreateAccount() {
         <FormLabel>Confirm Password</FormLabel>
         <Input placeholder="Confirm your password" type="password" />
       </FormControl>
-      <Button colorScheme="teal" width="full" mt={4} onClick={() => authenticate()}>
+      <Button colorScheme="teal" width="full" mt={4} onClick={() => authenticate(emailRef.current.value)}>
         Create Account
       </Button>
     </VStack>
