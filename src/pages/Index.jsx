@@ -8,10 +8,13 @@ const soilHorizons = [
   "https://images.unsplash.com/Untergrundhorizont-URL", // Replace with actual URL for Untergrundhorizont
 ];
 
+const soilHorizonsTitles = ["Oberbodenhorizont", "Unterbodenhorizont", "Untergrundhorizont"];
+
 const Index = () => {
   const [selectedSoils, setSelectedSoils] = useState([]);
   const [currentSoilIndex, setCurrentSoilIndex] = useState(0);
   const [gpsPosition, setGpsPosition] = useState("");
+  const currentTitle = soilHorizonsTitles[selectedSoils.length];
 
   const handleSwipe = () => {
     const nextIndex = (currentSoilIndex + 1) % soilHorizons.length;
@@ -50,7 +53,7 @@ const Index = () => {
           Accept
         </Button>
       </Flex>
-      {selectedSoils.length >= 3 && <Text>You have selected {selectedSoils.length} soil types. Thank you!</Text>}
+      {selectedSoils.length >= 1 && <Text fontSize="lg">{currentTitle}</Text>}
     </VStack>
   );
 };
