@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Index setSelectedSoils={setSelectedSoils} />} />
         <Route path="/create-account" element={<CreateAccount authenticate={authenticateUser} />} />
         <Route path="/profile" element={<Profile />} />
-        {isAuthenticated && <Route path="/soil-library" element={<SoilLibrary selectedSoils={selectedSoils} />} />}
+        <Route path="/soil-library" element={<SoilLibrary selectedSoils={selectedSoils} />} />
       </Routes>
     </Router>
   );

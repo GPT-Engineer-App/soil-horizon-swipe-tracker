@@ -14,16 +14,14 @@ function Navigation({ isAuthenticated }) {
         <Link as={RouterLink} to="/create-account" color="white">
           Create Account
         </Link>
-        {isAuthenticated && (
-          <>
-            <Link as={RouterLink} to="/soil-library" ml="4" color="white">
-              Soil Library
-            </Link>
-            <Link as={RouterLink} to="/soil-selector" ml="4" color="white">
-              Soil Selector
-            </Link>
-          </>
-        )}
+        <>
+          <Link as={RouterLink} to="/soil-library" ml="4" color="white">
+            Soil Library
+          </Link>
+          <Link as={RouterLink} to="/soil-selector" ml="4" color="white">
+            Soil Selector
+          </Link>
+        </>
         <Link as={RouterLink} to="/profile" ml="4" color="white">
           Profile
         </Link>
