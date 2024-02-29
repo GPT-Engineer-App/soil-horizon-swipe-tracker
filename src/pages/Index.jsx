@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Flex, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text, VStack, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
 
 const soilHorizons = [
@@ -12,6 +12,7 @@ const soilHorizons = [
 const Index = () => {
   const [selectedSoils, setSelectedSoils] = useState([]);
   const [currentSoilIndex, setCurrentSoilIndex] = useState(0);
+  const [gpsPosition, setGpsPosition] = useState("");
 
   const handleSwipe = () => {
     const nextIndex = (currentSoilIndex + 1) % soilHorizons.length;
@@ -32,11 +33,15 @@ const Index = () => {
       <Box boxSize="sm">
         <Image src={soilHorizons[currentSoilIndex]} alt="Soil Horizon" />
       </Box>
+      <FormControl id="gps-position">
+        <FormLabel>GPS Position</FormLabel>
+        <Input placeholder="Enter your GPS position" value={gpsPosition} onChange={(e) => setGpsPosition(e.target.value)} type="text" />
+      </FormControl>
       <Flex justify="center" gap={4}>
         <Button leftIcon={<FaArrowRight />} colorScheme="teal" onClick={handleSwipe}>
           Swipe
         </Button>
-        <Button leftIcon={<FaCheck />} colorScheme="green" onClick={handleAccept} isDisabled={selectedSoils.length >= 3}>
+        <Button leftIcon={<FaCheck />} colorScheme="green" onClick={handleAccept} isDisabled={selectedSoils.length >= 3 || !gpsPosition}>
           Accept
         </Button>
       </Flex>
