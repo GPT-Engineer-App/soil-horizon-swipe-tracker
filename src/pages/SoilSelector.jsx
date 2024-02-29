@@ -6,6 +6,8 @@ const soilHorizons = ["https://images.unsplash.com/Oberbodenhorizont-URL", "http
 
 const soilHorizonsTitles = ["Oberbodenhorizont", "Unterbodenhorizont", "Untergrundhorizont"];
 
+import { useNavigate } from "react-router-dom";
+
 function SoilSelector({ setSelectedSoils }) {
   const [selectedSoils, setSelectedSoilsState] = useState([]);
   const [dateTime, setDateTime] = useState(new Date().toISOString());
@@ -16,6 +18,10 @@ function SoilSelector({ setSelectedSoils }) {
   // `useNavigate` import should be moved to the top of the file.
 
   // Define `handleAccept` function with the required logic and use `useNavigate` to redirect.
+  const handleSwipe = () => {
+    setCurrentSoilIndex((prevIndex) => (prevIndex + 1) % soilHorizons.length);
+  };
+
   const handleAccept = () => {
     if (selectedSoils.length < 3) {
       setSelectedSoilsState((prevSelectedSoils) => [

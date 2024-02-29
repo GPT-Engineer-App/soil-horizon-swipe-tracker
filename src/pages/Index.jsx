@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Button, Flex, Image, Text, VStack, FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
 
@@ -22,6 +23,10 @@ const Index = () => {
   // `useNavigate` import should be moved to the top of the file.
 
   // Define `handleAccept` function with the required logic and use `useNavigate` to redirect.
+  const handleSwipe = () => {
+    setCurrentSoilIndex((prevIndex) => (prevIndex + 1) % soilHorizons.length);
+  };
+
   const handleAccept = () => {
     if (selectedSoils.length < 3) {
       setSelectedSoils((prevSelectedSoils) => [
@@ -38,7 +43,7 @@ const Index = () => {
 
     // Redirect to the Soil Selector page after accepting the third soil horizon
     if (selectedSoils.length === 2) {
-      navigate("/soil-selector");
+      navigate("/");
     }
   };
 
