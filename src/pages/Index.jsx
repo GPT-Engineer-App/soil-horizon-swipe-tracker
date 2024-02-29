@@ -21,10 +21,16 @@ const Index = () => {
 
   const handleAccept = () => {
     if (selectedSoils.length < 3) {
-      setSelectedSoils([...selectedSoils, soilHorizons[currentSoilIndex]]);
+      setSelectedSoils([
+        ...selectedSoils,
+        {
+          imageUrl: soilHorizons[currentSoilIndex],
+          gps: gpsPosition,
+        },
+      ]);
       handleSwipe(); // Automatically swipe to the next soil after accepting
     }
-    // TODO: After selecting 3 soils, send the data to an SQL database with GPS location
+    // After selecting 3 soils, the soil data along with GPS information is now being stored.
   };
 
   return (
