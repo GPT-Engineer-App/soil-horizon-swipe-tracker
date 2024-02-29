@@ -3,10 +3,9 @@ import { Box, Button, Flex, Image, Text, VStack, FormControl, FormLabel, Input }
 import { FaArrowRight, FaCheck } from "react-icons/fa";
 
 const soilHorizons = [
-  "https://images.unsplash.com/photo-1645476627692-10aadb24fcb5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwaG9yaXpvbiUyMEF8ZW58MHx8fHwxNzA5MTY2MzMyfDA&ixlib=rb-4.0.3&q=80&w=1080",
-  "https://images.unsplash.com/36/X7L5hgFXQZazzPaK3goC_14084990857_88cabf3b6d_o.jpg?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwaG9yaXpvbiUyMEJ8ZW58MHx8fHwxNzA5MTY2MzMyfDA&ixlib=rb-4.0.3&q=80&w=1080",
-  "https://images.unsplash.com/photo-1492496913980-501348b61469?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxzb2lsJTIwaG9yaXpvbiUyMEN8ZW58MHx8fHwxNzA5MTY2MzMyfDA&ixlib=rb-4.0.3&q=80&w=1080",
-  // ...add more soil horizon images
+  "https://images.unsplash.com/Oberbodenhorizont-URL", // Replace with actual URL for Oberbodenhorizont
+  "https://images.unsplash.com/Unterbodenhorizont-URL", // Replace with actual URL for Unterbodenhorizont
+  "https://images.unsplash.com/Untergrundhorizont-URL", // Replace with actual URL for Untergrundhorizont
 ];
 
 const Index = () => {
