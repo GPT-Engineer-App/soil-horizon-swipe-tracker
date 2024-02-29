@@ -8,36 +8,49 @@ function SoilLibrary({ selectedSoils }) {
         <Heading fontSize="2xl" mb="4">
           Soil Library
         </Heading>
-        {selectedSoils
-          .reduce((acc, { imageUrl, gps }) => {
-            if (!acc[gps]) acc[gps] = [];
-            acc[gps].push({ imageUrl, gps });
-            return acc;
-          }, {})
-          .map(([gps, soils], index) => {
-            return (
-              <Table key={gps} variant="simple">
-                {index === 0 && (
-                  <Thead>
-                    <Tr>
-                      <Th>Soil Image URL</Th>
-                      <Th>GPS Position</Th>
-                      <Th>Date and Time</Th>
-                    </Tr>
-                  </Thead>
-                )}
-                <Tbody>
-                  {soils.map((soil, idx) => (
-                    <Tr key={idx}>
-                      <Td>{soil.imageUrl}</Td>
-                      <Td>{gps}</Td>
-                      <Td>{soil.timestamp}</Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-              </Table>
-            );
-          })}
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Gebiet</Th>
+              <Th>GPS</Th>
+              <Th>Oberboden</Th>
+              <Th>Unterboden</Th>
+              <Th>Untergrund</Th>
+              <Th>Datum</Th>
+              <Th>Zeit</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {selectedSoils.length ? (
+              selectedSoils.map((soil, idx) => {
+                const dateTimeSplit = soil.timestamp.split("T");
+                const date = dateTimeSplit[0];
+                const time = dateTimeSplit[1].split(".")[0];
+                return (
+                  <Tr key={idx}>
+                    <Td>{soil.gps}</Td>
+                    <Td>{soil.gps}</Td>
+                    <Td>---</Td>
+                    <Td>---</Td>
+                    <Td>---</Td>
+                    <Td>{date}</Td>
+                    <Td>{time}</Td>
+                  </Tr>
+                );
+              })
+            ) : (
+              <Tr>
+                <Td>---</Td>
+                <Td>---</Td>
+                <Td>---</Td>
+                <Td>---</Td>
+                <Td>---</Td>
+                <Td>---</Td>
+                <Td>---</Td>
+              </Tr>
+            )}
+          </Tbody>
+        </Table>
       </VStack>
     </Box>
   );
