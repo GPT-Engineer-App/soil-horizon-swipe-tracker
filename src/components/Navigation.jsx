@@ -19,8 +19,8 @@ function Navigation({ isAuthenticated }) {
             <Link as={RouterLink} to="/soil-library" ml="4" color="white">
               Soil Library
             </Link>
-            <Link as={RouterLink} to="/soil-library" ml="4" color="white">
-              Current Page
+            <Link as={RouterLink} to="/" ml="4" color="white">
+              Soil Selector
             </Link>
           </>
         )}
