@@ -19,11 +19,9 @@ const Index = () => {
   const [gpsPosition, setGpsPosition] = useState("");
   const currentTitle = soilHorizonsTitles[selectedSoils.length];
 
-  const handleSwipe = () => {
-    const nextIndex = (currentSoilIndex + 1) % soilHorizons.length;
-    setCurrentSoilIndex(nextIndex);
-  };
+  // `useNavigate` import should be moved to the top of the file.
 
+  // Define `handleAccept` function with the required logic and use `useNavigate` to redirect.
   const handleAccept = () => {
     if (selectedSoils.length < 3) {
       setSelectedSoils((prevSelectedSoils) => [
@@ -37,8 +35,14 @@ const Index = () => {
       setDateTime(new Date().toISOString()); // Update the dateTime state to the current date and time in ISO format
       handleSwipe(); // Automatically swipe to the next soil after accepting
     }
-    // After selecting 3 soils, the soil data along with GPS information is now being stored.
+
+    // Redirect to the Soil Selector page after accepting the third soil horizon
+    if (selectedSoils.length === 2) {
+      navigate("/soil-selector");
+    }
   };
+
+  const navigate = useNavigate();
 
   return (
     <VStack spacing={8} p={4}>
