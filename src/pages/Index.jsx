@@ -10,8 +10,11 @@ const soilHorizons = [
 
 const soilHorizonsTitles = ["Oberbodenhorizont", "Unterbodenhorizont", "Untergrundhorizont"];
 
+// Removing the import of date-fns as it is not available
+
 const Index = () => {
   const [selectedSoils, setSelectedSoils] = useState([]);
+  const [dateTime, setDateTime] = useState(new Date().toISOString());
   const [currentSoilIndex, setCurrentSoilIndex] = useState(0);
   const [gpsPosition, setGpsPosition] = useState("");
   const currentTitle = soilHorizonsTitles[selectedSoils.length];
@@ -23,13 +26,15 @@ const Index = () => {
 
   const handleAccept = () => {
     if (selectedSoils.length < 3) {
-      setSelectedSoils([
-        ...selectedSoils,
+      setSelectedSoils((prevSelectedSoils) => [
+        ...prevSelectedSoils,
         {
           imageUrl: soilHorizons[currentSoilIndex],
           gps: gpsPosition,
+          timestamp: dateTime,
         },
       ]);
+      setDateTime(new Date().toISOString()); // Update the dateTime state to the current date and time in ISO format
       handleSwipe(); // Automatically swipe to the next soil after accepting
     }
     // After selecting 3 soils, the soil data along with GPS information is now being stored.

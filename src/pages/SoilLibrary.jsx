@@ -24,6 +24,7 @@ function SoilLibrary({ selectedSoils }) {
                 {soils.map((soil, idx) => (
                   <Box key={idx} p={2} borderWidth="1px" borderRadius="lg" overflow="hidden">
                     <Text>Soil Image URL: {soil.imageUrl}</Text>
+                    <Text>Date and Time: {soil.timestamp}</Text>
                   </Box>
                 ))}
               </VStack>
