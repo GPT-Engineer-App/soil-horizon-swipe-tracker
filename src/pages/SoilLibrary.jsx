@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, VStack, Heading, Divider } from "@chakra-ui/react";
+import { Box, Table, Thead, Tbody, Tr, Th, Td, Heading, Divider, VStack } from "@chakra-ui/react";
 
 function SoilLibrary({ selectedSoils }) {
   return (
@@ -14,22 +14,30 @@ function SoilLibrary({ selectedSoils }) {
             acc[gps].push({ imageUrl, gps });
             return acc;
           }, {})
-          .map(([gps, soils], index) => (
-            <Box key={gps}>
-              {index > 0 && <Divider my={4} />}
-              <Heading fontSize="lg" mb={2}>
-                GPS: {gps}
-              </Heading>
-              <VStack>
-                {soils.map((soil, idx) => (
-                  <Box key={idx} p={2} borderWidth="1px" borderRadius="lg" overflow="hidden">
-                    <Text>Soil Image URL: {soil.imageUrl}</Text>
-                    <Text>Date and Time: {soil.timestamp}</Text>
-                  </Box>
-                ))}
-              </VStack>
-            </Box>
-          ))}
+          .map(([gps, soils], index) => {
+            return (
+              <Table key={gps} variant="simple">
+                {index === 0 && (
+                  <Thead>
+                    <Tr>
+                      <Th>Soil Image URL</Th>
+                      <Th>GPS Position</Th>
+                      <Th>Date and Time</Th>
+                    </Tr>
+                  </Thead>
+                )}
+                <Tbody>
+                  {soils.map((soil, idx) => (
+                    <Tr key={idx}>
+                      <Td>{soil.imageUrl}</Td>
+                      <Td>{gps}</Td>
+                      <Td>{soil.timestamp}</Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </Table>
+            );
+          })}
       </VStack>
     </Box>
   );
